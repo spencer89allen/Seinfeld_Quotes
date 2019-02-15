@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import JerryList from './Components/JerryList';
+import ElaineList from './Components/ElaineList';
 
 class App extends Component {
+
+  constructor() {
+    super()
+
+    this.state = {
+      seinfeldQuotes: '',
+      author: ''
+    }
+
+  }
+
+  handleGetQuote = () => {
+    axios.get('https://seinfeld-quotes.herokuapp.com/random').then( res => {
+      this.setState({
+        seinfeldQuotes: res.data.quote,
+        author: res.data.author,
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+          {this.state.seinfeldQuotes}
+          <button onClick={ () => this.handleGetQuote()}>Get Quote</button>
+        <div>
+          <JerryList quote={this.state.seinfeldQuotes}/>
+          <ElaineList quote={this.state.seinfeldQuotes}/>
+        </div>
       </div>
     );
   }
