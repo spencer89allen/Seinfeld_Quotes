@@ -18,24 +18,25 @@ class KramerList extends Component {
     }
 
     addToKramerList( props ) {
-        console.log(this.props.quote)
-        console.log(this.state.kramerList)
-
         var body = { quote: props }
         Axios.post('/api/quotes/kramer', body).then((res) => {
             this.setState({
                 kramerList: res.data
-            }, () => {
-                console.log(this.state.kramerList)
+            })
+        }) 
+    }
+
+    deleteKramerQuote(id) {
+        Axios.delete(`/api/quotes/kramer/${id}`).then((res) => {
+            this.setState({
+                kramerList: res.data
             })
         })
-
-        
     }
 
     render() {
         var kramerSaid = this.state.kramerList.map(( element, id ) => {
-            return <p key={ id }>{ element }</p>
+            return <p key={ id }>{ element }<button onClick={(id) => this.deleteKramerQuote(id)}>Remove</button></p>
         })
         return (
             <div>

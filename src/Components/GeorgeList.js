@@ -25,10 +25,18 @@ class GeorgeList extends Component {
         })
     }
 
+    deleteGeorgeQuote(id) {
+        axios.delete(`/api/quotes/george/${id}`).then((res) => {
+            this.setState({
+                georgeList: res.data,
+            })
+        })
+    }
+
 
     render() {
         var georgeSaid = this.state.georgeList.map((element, id) => {
-            return <p key={ id }>{ element }</p>
+            return <p key={ id }>{ element }<button onClick={(id) => this.deleteGeorgeQuote(id)}>Remove</button></p>
         })
         return (
             <div>

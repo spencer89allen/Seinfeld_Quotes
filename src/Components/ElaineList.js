@@ -25,10 +25,18 @@ class ElaineList extends Component {
         })
     }
 
+    deleteElaineQuote(id) {
+        axios.delete(`/api/quotes/elaine/${id}`).then((res) =>{
+            this.setState({
+                elaineList: res.data,
+            })
+        })
+    }
+
     render() {
 
         var elaineSaid = this.state.elaineList.map((element, id) => {
-            return <p key={id}>{element}</p>
+            return <p key={id}>{element}<button onClick={(id) => this.deleteElaineQuote(id)}>Remove</button></p>
         })
 
         return (

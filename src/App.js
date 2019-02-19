@@ -6,6 +6,7 @@ import JerryList from './Components/JerryList';
 import ElaineList from './Components/ElaineList';
 import GeorgeList from './Components/GeorgeList';
 import KramerList from './Components/KramerList';
+import OtherList from './Components/OtherList';
 
 class App extends Component {
 
@@ -39,7 +40,8 @@ class App extends Component {
           <JerryList quote={this.state.seinfeldQuotes} />
           <ElaineList quote={this.state.seinfeldQuotes} />
           <GeorgeList quote={this.state.seinfeldQuotes} />
-          <KramerList quote={this.state.seinfeldQuotes}></KramerList>
+          <KramerList quote={this.state.seinfeldQuotes} />
+          <OtherList quote={this.state.seinfeldQuotes} />
         </div>
       </div>
     );

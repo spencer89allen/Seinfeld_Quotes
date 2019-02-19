@@ -2,6 +2,7 @@ var jerryQuotes = []
 var elaineQuotes = []
 var georgeQuotes = []
 var kramerQuotes = []
+var otherQuotes = []
 
 module.exports = {
     
@@ -19,6 +20,15 @@ module.exports = {
         res.send(jerryQuotes)
     },
 
+    deleteJerry: (req, res) => {
+
+        var { index } = req.params
+
+        jerryQuotes.splice(index, 1)
+
+        res.send(jerryQuotes)
+    },
+
     addElaine: (req, res) => {
 
         var { quote } = req.body
@@ -29,6 +39,16 @@ module.exports = {
     },
 
     getElaine: (req, res) => {
+
+        res.send(elaineQuotes)
+
+    },
+
+    deleteElaine: (req, res) => {
+
+        var { id } = req.params
+
+        elaineQuotes.splice(id, 1)
 
         res.send(elaineQuotes)
 
@@ -49,6 +69,16 @@ module.exports = {
         res.send(georgeQuotes)
     },
 
+    deleteGeorge: (req, res) => {
+
+        var { id } = req.params
+
+        georgeQuotes.splice(id, 1)
+
+        res.send(georgeQuotes)
+
+    },
+
     addKramer: (req, res) => {
 
         var { quote } = req.body
@@ -62,6 +92,42 @@ module.exports = {
     getKramer: (req, res) => {
 
         res.send(kramerQuotes)
+
+    },
+
+    deleteKramer: (req, res) => {
+
+        var { id } = req.params
+
+        kramerQuotes.splice(id, 1)
+
+        res.send(kramerQuotes)
+
+    },
+
+    addOther: (req, res) => {
+        
+        var { quote } = req.body
+
+        otherQuotes.push(quote)
+
+        res.send(otherQuotes)
+
+    },
+
+    getOther: (req, res) => {
+
+        res.send(otherQuotes)
+
+    },
+
+    deleteOther: (req, res) => {
+
+        var { id } = req.params
+
+        otherQuotes.splice(id, 1)
+
+        res.send(otherQuotes)
 
     },
 

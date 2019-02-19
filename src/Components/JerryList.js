@@ -25,13 +25,18 @@ class JerryList extends Component {
         })
     }
 
+    deleteJerryQuote(index) {
+        axios.delete(`/api/quotes/jerry/${index}`).then((res) => {
+            this.setState({
+                jerryList: res.data,
+            })
+        })
+    }
 
     render() {
-
-        let jerrySaid = this.state.jerryList.map((element, id) => {
-            return <p key={id}>{element}</p>
+        let jerrySaid = this.state.jerryList.map((element, index) => {
+            return <p key={index}>{element}<button onClick={(index) => this.deleteJerryQuote(index)}>Remove</button></p>
         })
-
         return(
             <div>
                 <button onClick={(e) => this.addToJerryList(this.props.quote)}>Jerry</button>
