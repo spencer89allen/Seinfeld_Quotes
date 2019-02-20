@@ -4,14 +4,21 @@ var georgeQuotes = []
 var kramerQuotes = []
 var otherQuotes = []
 
+//Require
+let randomID = require('random-id');
+
 module.exports = {
     
     addJerry: (req, res) => {
 
-        var { quote } = req.body
+        let ID = randomID(10)
 
-        jerryQuotes.push(quote)
+        let newQuote = {
+            quote: req.body.quote,
+            id: ID
+        }
 
+        jerryQuotes.push(newQuote)
         res.send(jerryQuotes)
     },
 
@@ -22,9 +29,11 @@ module.exports = {
 
     deleteJerry: (req, res) => {
 
-        var { index } = req.params
+        var { id } = req.params
 
-        jerryQuotes.splice(index, 1)
+        jerryQuotes = jerryQuotes.filter((quote) => {
+            return quote.id != id;
+        })
 
         res.send(jerryQuotes)
     },

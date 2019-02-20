@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 // Jerry Endpoints
 app.post('/api/quotes/jerry', cntrl.addJerry)
 app.get('/api/quotes/jerry', cntrl.getJerry)
-app.delete(`/api/quotes/jerry/:index`, cntrl.deleteJerry)
+app.delete(`/api/quotes/jerry/:id`, cntrl.deleteJerry)
 
 //Elain Endpoints
 app.post('/api/quotes/elaine', cntrl.addElaine)

@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       seinfeldQuotes: '',
-      author: ''
+      author: '',
     }
 
   }
@@ -37,7 +37,7 @@ class App extends Component {
         </div>
           <button onClick={ () => this.handleGetQuote()}>Get Quote</button>
         <div>
-          <JerryList quote={this.state.seinfeldQuotes} />
+          <JerryList quote={this.state.seinfeldQuotes}/>
           <ElaineList quote={this.state.seinfeldQuotes} />
           <GeorgeList quote={this.state.seinfeldQuotes} />
           <KramerList quote={this.state.seinfeldQuotes} />

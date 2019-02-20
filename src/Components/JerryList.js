@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import randomId from 'random-id';
+
 
 class JerryList extends Component {
 
@@ -16,17 +18,20 @@ class JerryList extends Component {
         })
     }
 
-    addToJerryList(props) {        
-        var body = {quote: props}
+    addToJerryList(props) {  
+        var body = { 
+            quote: props,
+         }
         axios.post('/api/quotes/jerry', body).then((res) =>{
+            console.log(res)
              this.setState({
                  jerryList: res.data
              })
         })
     }
 
-    deleteJerryQuote(index) {
-        axios.delete(`/api/quotes/jerry/${index}`).then((res) => {
+    deleteJerryQuote(id) {
+        axios.delete(`/api/quotes/jerry/${id}`).then((res) => {
             this.setState({
                 jerryList: res.data,
             })
@@ -35,7 +40,7 @@ class JerryList extends Component {
 
     render() {
         let jerrySaid = this.state.jerryList.map((element, index) => {
-            return <p key={index}>{element}<button onClick={(index) => this.deleteJerryQuote(index)}>Remove</button></p>
+            return <p key={index + 1}>{element.quote}<button onClick={(e) => this.deleteJerryQuote(element.id)}>Remove</button></p>
         })
         return(
             <div>
